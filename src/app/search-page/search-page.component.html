@@ -1,0 +1,5 @@
+<form class="searchForm" [formGroup]="searchForm">
+  <input mat-input placeholder="Search Text" type="search" formControlName="searchText">
+  <button type="submit" (click)="postForm()" mat-raised-button>Post Search</button>
+  <button type="submit" (click)="getForm()" mat-raised-button>Get All</button>
+</form>
