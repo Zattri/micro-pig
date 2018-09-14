@@ -14,7 +14,7 @@ export class SearchPageComponent implements OnInit {
 
   searchForm: FormGroup;
 
-  getUrl = 'http://localhost:9200/_cat/indices?v';
+  getUrl = 'http://localhost:3000';
   postUrl = 'http://localhost:9200/search/company-pvqs/_search';
 
   constructor(
