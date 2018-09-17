@@ -7,19 +7,13 @@ app.use(cors())
 app.use(bodyParser.json())
 
 function postCall(request) {
-    console.log(request.body)
     return new Promise((res, rej) => {
-        let myobj = { text: request.body.searchText };
-        console.log(myobj)
-        res(myobj)
+        res({text: request.body.searchText})
     })
 }
 
 // TODO:
-// Break down parameters from the post request and pass into microservice function
-// Make a test microservice function to test promise
-// Get a microservice and try to send a call to that from anything
-// Format the request data o the correct format for the microservice
+// Format the request data to the correct format for the microservice, probably just want to
 // Hook the call up to the microservice and call it
 // Format the data for the return result for the first HTTP request
 
