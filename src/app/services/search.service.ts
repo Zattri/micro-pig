@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,26 +15,29 @@ export class SearchService {
     private http: HttpClient
   ) { }
 
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+  private handleError<T> (err) {
+    // TODO: send the error to remote logging infrastructure
+    console.error('ERROR: ', err);
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error);
-
-      // Return empty result - may not be great in the future
-      return of(result as T);
-    };
+    // Return empty result - we should be throwing an error here
+    return of({} as T);
   }
 
-  post<T> (controller: string, data: any): Observable<T> {
-    console.log('Posting');
-    return this.http.post<T>(`${this.baseUrl}/${controller}`, data)
-    .pipe(this.handleError());
+  post<T> (url: string, data: any): Observable<T> {
+    return this.http.post<T>(`${url}`, data)
+    .pipe(
+      catchError(err => {
+        return this.handleError<T>(err);
+      })
+    );
   }
 
   get<T> (url: string): Observable<T> {
-    console.log('Getting -', url);
     return this.http.get<T>(`${url}`)
-    .pipe(this.handleError());
+    .pipe(
+      catchError(err => {
+        return this.handleError<T>(err);
+      })
+    );
   }
 }

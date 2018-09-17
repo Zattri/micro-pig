@@ -14,8 +14,11 @@ export class SearchPageComponent implements OnInit {
 
   searchForm: FormGroup;
 
+  displayedColumns: string[] = ['text'];
+  dataSource = null;
+
   getUrl = 'http://localhost:3000';
-  postUrl = 'http://localhost:9200/search/company-pvqs/_search';
+  postUrl = 'http://localhost:3000/search';
 
   constructor(
     private fb: FormBuilder,
@@ -29,13 +32,18 @@ export class SearchPageComponent implements OnInit {
   }
 
   postForm() {
-    console.log(this.searchForm.value);
-    this.searchService.post(this.postUrl, this.searchForm.value);
+    this.searchService.post(this.postUrl, this.searchForm.value)
+    .subscribe(res => {
+      this.dataSource = res;
+      console.log(res);
+    });
   }
 
   getForm() {
-    console.log(this.searchForm.value);
-    const result = this.searchService.get(this.getUrl);
-    console.log(result);
+    this.searchService.get(this.getUrl)
+    .subscribe(res => {
+      this.dataSource = res;
+      console.log(res);
+    });
   }
 }
