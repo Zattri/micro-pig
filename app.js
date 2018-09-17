@@ -1,14 +1,19 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const bodyParser = require('body-parser')
 
 app.use(cors())
+app.use(bodyParser.json())
 
-const serviceCall = new Promise(
-    (res, rej) => {
-        setTimeout(() => res('Hello world!'), 5000)
-    }
-)
+function postCall(request) {
+    console.log(request.body)
+    return new Promise((res, rej) => {
+        let myobj = { text: request.body.searchText };
+        console.log(myobj)
+        res(myobj)
+    })
+}
 
 // TODO:
 // Break down parameters from the post request and pass into microservice function
@@ -20,15 +25,16 @@ const serviceCall = new Promise(
 
 app.get('/', (req, res) => {
     console.log("Get request hit")
-    const myObj = [{ text: 'Hello testing' }, { text: 'bottom text' }]
-    res.status(200).send(myObj)
+    const myObjArr = [{ text: 'Hello testing' }, { text: 'bottom text' }]
+    res.status(200).send(myObjArr)
 })
 
 app.post('/search', (req, res) => {
     console.log("Post request hit")
-    // Mock up function - const dataToSend = req.processData();
-    const responseObj = [{ text: 'Here is your post request response' }]
-    res.status(200).send(responseObj)
+    const returnPromise = postCall(req);
+    returnPromise.then(value => {
+        res.status(200).send([value])
+    })
 })
 
 app.listen(3000, () => console.log('App running on port 3000'))
