@@ -1,7 +1,7 @@
 FROM node:8
 
 # Working directory
-WORKDIR /src/app
+WORKDIR /src
 
 # Copy JSON package for install
 COPY package*.json ./
