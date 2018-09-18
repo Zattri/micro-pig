@@ -4,7 +4,7 @@ FROM node:8
 WORKDIR /src/app
 
 # Copy JSON package for install
-COPY package*.json
+COPY package*.json ./
 
 # Install all the packages
 RUN npm install
@@ -13,7 +13,7 @@ RUN npm install
 COPY . .
 
 # Port to expose
-EXPOSE 1234
+EXPOSE 3000
 
 # Commands to run on container start
 CMD ["npm", "start"]
