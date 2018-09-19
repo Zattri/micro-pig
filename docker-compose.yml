@@ -10,6 +10,20 @@ services:
     ports:
      - "3000:3000"
 
+  node-customer:
+    image: customer-service
+    container_name: node-customer
+    build:
+      context: ./customer-service/
+      dockerfile: Dockerfile
+
+  node-product:
+    image: product-service
+    container_name: node-product
+    build:
+      context: ./product-service/
+      dockerfile: Dockerfile
+
   mongodb:
     image: mongo
     container_name: mongo-database
