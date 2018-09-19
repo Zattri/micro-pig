@@ -12,7 +12,6 @@ RUN npm install
 # Copy all existing code from working directory
 COPY . .
 
-# Port to expose for container
 EXPOSE 80
 
 # Commands to run on container start

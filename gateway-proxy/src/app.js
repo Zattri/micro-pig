@@ -1,4 +1,5 @@
 const express = require('express')
+const proxy = require('express-http-proxy');
 const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -12,23 +13,36 @@ function postCall(request) {
     })
 }
 
-// TODO:
-// Format the request data to the correct format for the microservice, probably just want to
-// Hook the call up to the microservice and call it
-// Format the data for the return result for the first HTTP request
+const proxyGates = [
+    {name: "customer", route: "http://customer"},
+    {name: "product", route: "http://product-service"},
+]
 
-app.get('/', (req, res) => {
-    console.log("Get request hit")
-    const myObjArr = [{ text: 'Hello testing' }, { text: 'bottom text' }]
-    res.status(200).send(myObjArr)
-})
+app.use('/', (req, res, next) => {
 
-app.post('/search', (req, res) => {
-    console.log("Post request hit")
-    const returnPromise = postCall(req);
-    returnPromise.then(value => {
-        res.status(200).send([value])
-    })
+    console.log(`Get Request: ${req.originalUrl}`)
+
+    let routes = proxyGates.filter(gate => req.originalUrl.indexOf(`/${gate.name}`) > -1)
+
+    console.log(routes)
+
+    if (routes.length === 1) {
+
+        let strippedPath = req.originalUrl.replace(`/${routes[0].name}`, '')
+    
+        let completeRouteUrl = `${routes[0].route}${strippedPath}`
+
+        return proxy(routes[0].route, {
+            proxyReqPathResolver: () => {
+                return require("url").parse(completeRouteUrl).path
+            },
+            preserveHostHdr: true,
+        })(req, res, next)
+    }
+
+    else {
+        console.log("Error getting the input route")
+    }
 })
 
 app.listen(3000, () => console.log('App running on port 3000'))

@@ -6,11 +6,11 @@ const bodyParser = require('body-parser')
 app.use(cors())
 app.use(bodyParser.json())
 
-app.get('/product', (req, res) => {
+app.get('/', (req, res) => {
     console.log("Get request hit")
 })
 
-app.post('/product', (req, res) => {
+app.post('/', (req, res) => {
     console.log("Post request hit")
 })
 
