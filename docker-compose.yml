@@ -1,7 +1,7 @@
 version: '3'
 services:
   
-  node-gateway:
+  gateway:
     container_name: node-gateway
     build:
       context: ./gateway-proxy/
@@ -15,7 +15,7 @@ services:
       context: ./customer-service/
       dockerfile: Dockerfile
 
-  node-product:
+  product:
     container_name: node-product
     build:
       context: ./product-service/
