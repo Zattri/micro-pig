@@ -11,7 +11,7 @@ In order to run this project you will have to have the following installed -
 - docker
 - docker-compose (recommended)
 
-It is recommended that you build the container through docker-compose with `docker-compose up` in the `node-app` folder.
+It is recommended that you build and run the container through docker-compose with `docker-compose build` and `docker-compose up` in the root directory.
 
 This container contains -
 
