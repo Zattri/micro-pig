@@ -1,6 +1,6 @@
 FROM node:8
 
-# Working directory
+# Working directory of the source code
 WORKDIR /src
 
 # Copy JSON package for install
@@ -9,10 +9,10 @@ COPY package*.json ./
 # Install all the packages
 RUN npm install
 
-# Copy all existing code
+# Copy all existing code from working directory
 COPY . .
 
-# Port to expose
+# Port to expose for container
 EXPOSE 3000
 
 # Commands to run on container start

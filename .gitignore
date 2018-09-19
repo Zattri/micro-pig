@@ -6,8 +6,7 @@
 /out-tsc
 
 # dependencies
-/angular-app/node_modules
-/node-app/node_modules
+/*/node_modules
 
 # IDEs and editors
 /.idea

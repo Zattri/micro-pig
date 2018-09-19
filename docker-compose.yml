@@ -1,11 +1,11 @@
 version: '3'
 services:
   
-  node:
+  node-gateway:
     image: micro-pig
-    container_name: node-app-frontend
+    container_name: node-gateway
     build:
-      context: ./
+      context: ./gateway-proxy/
       dockerfile: Dockerfile
     ports:
      - "3000:3000"
