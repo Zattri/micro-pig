@@ -1,0 +1,43 @@
+version: '3'
+services:
+  
+  gateway:
+    container_name: node-gateway
+    build:
+      context: ./gateway-proxy/
+      dockerfile: Dockerfile
+    ports:
+     - "3000:3000"
+
+  customer:
+    container_name: node-customer
+    build:
+      context: ./customer-service/
+      dockerfile: Dockerfile
+
+  product:
+    container_name: node-product
+    build:
+      context: ./product-service/
+      dockerfile: Dockerfile
+
+  mongodb:
+    image: mongo
+    container_name: mongo-database
+    ports: 
+      - "27017:27017"
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      discovery.type: "single-node"
+      transport.host: "127.0.0.1"

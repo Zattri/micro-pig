@@ -1,0 +1,23 @@
+<form class="searchForm" [formGroup]="searchForm">
+  <input mat-input placeholder="Search Text" type="search" formControlName="searchText">
+  <button type="submit" (click)="postForm()" mat-raised-button>Post Search</button>
+  <button type="submit" (click)="getForm()" mat-raised-button>Get All</button>
+</form>
+
+<div *ngIf="dataSource; else notSearched">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+    <ng-container matColumnDef="text">
+      <th mat-header-cell *matHeaderCellDef>Text</th>
+      <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<ng-template #notSearched>
+  <br>
+  Hey, you need to search first!
+</ng-template>
