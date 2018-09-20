@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup } from '../../../node_modules/@angular/forms';
 import { EventEmitter } from 'events';
 import { SearchService } from '../services/search.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-page',
@@ -41,6 +42,14 @@ export class SearchPageComponent implements OnInit {
 
   getForm() {
     this.searchService.get(this.getUrl)
+    .subscribe(res => {
+      this.dataSource = res;
+      console.log(res);
+    });
+  }
+
+  getDatabase() {
+    this.searchService.get(`${this.getUrl}/mongodb`)
     .subscribe(res => {
       this.dataSource = res;
       console.log(res);

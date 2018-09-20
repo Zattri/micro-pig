@@ -14,5 +14,7 @@ COPY . .
 
 EXPOSE 80
 
+VOLUME /data
+
 # Commands to run on container start
 CMD ["npm", "start"]

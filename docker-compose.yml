@@ -2,7 +2,7 @@ version: '3'
 services:
   
   gateway:
-    container_name: node-gateway
+    container_name: gateway-proxy
     build:
       context: ./gateway-proxy/
       dockerfile: Dockerfile
@@ -10,34 +10,30 @@ services:
      - "3000:3000"
 
   customer:
-    container_name: node-customer
+    container_name: customer-service
     build:
       context: ./customer-service/
       dockerfile: Dockerfile
+    links:
+      [mongodb]
 
   product:
-    container_name: node-product
+    container_name: product-service
     build:
       context: ./product-service/
       dockerfile: Dockerfile
+    links:
+      [mongodb]
 
   mongodb:
-    image: mongo
+    image: mongo:latest
     container_name: mongo-database
     ports: 
       - "27017:27017"
-    restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_DATA_DIR: /data/db
+    volumes:
+      - mongoDbData:/data/db
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
-    container_name: elasticsearch
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    environment:
-      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
-      discovery.type: "single-node"
-      transport.host: "127.0.0.1"
+volumes:
+  mongoDbData:

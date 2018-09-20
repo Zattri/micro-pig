@@ -16,6 +16,7 @@ function postCall(request) {
 const proxyGates = [
     {name: "customer", route: "http://customer"},
     {name: "product", route: "http://product"},
+    {name: "mongodb", route: "http://customer/fetchall"},
 ]
 
 app.use('/', (req, res, next) => {
