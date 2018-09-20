@@ -2,9 +2,7 @@
   <input mat-input placeholder="Search Text" type="search" formControlName="searchText">
   <button type="submit" (click)="postForm()" mat-raised-button>Post Search</button>
   <button type="submit" (click)="getForm()" mat-raised-button>Get All</button>
-  <br>
   <button type="submit" (click)="getDatabase()" mat-raised-button>Get All CustomerData</button>
-  <br>
   <mat-select placeholder="Database" formControlName="databaseSelect">
     <mat-option *ngFor="let database of databases" [value]="database.value">
       {{database.viewValue}}
