@@ -15,7 +15,12 @@ export class SearchPageComponent implements OnInit {
 
   searchForm: FormGroup;
 
-  displayedColumns: string[] = ['text'];
+  databases = [
+    {value: 'product', viewValue: 'Product'},
+    {value: 'customer', viewValue: 'Customer'}
+  ];
+
+  displayedColumns: string[] = ['name', 'age', 'email', 'telephone', 'company', 'postcode', 'address'];
   dataSource = null;
 
   getUrl = 'http://localhost:3000';
@@ -28,7 +33,8 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit() {
     this.searchForm = this.fb.group({
-      searchText: new FormControl('')
+      searchText: new FormControl(''),
+      databaseSelect: new FormControl('Database')
     });
   }
 
@@ -49,10 +55,8 @@ export class SearchPageComponent implements OnInit {
   }
 
   getDatabase() {
-    this.searchService.get(`${this.getUrl}/mongodb`)
-    .subscribe(res => {
-      this.dataSource = res;
-      console.log(res);
-    });
+    const microservice = this.searchForm.controls.databaseSelect.value;
+    this.searchService.get(`${this.getUrl}/${microservice}/fetchall`)
+    .subscribe(res => this.dataSource = res);
   }
 }

@@ -2,20 +2,59 @@
   <input mat-input placeholder="Search Text" type="search" formControlName="searchText">
   <button type="submit" (click)="postForm()" mat-raised-button>Post Search</button>
   <button type="submit" (click)="getForm()" mat-raised-button>Get All</button>
-  <button type="submit" (click)="getDatabase()" mat-raised-button>Get Data</button>
+  <br>
+  <button type="submit" (click)="getDatabase()" mat-raised-button>Get All CustomerData</button>
+  <br>
+  <mat-select placeholder="Database" formControlName="databaseSelect">
+    <mat-option *ngFor="let database of databases" [value]="database.value">
+      {{database.viewValue}}
+    </mat-option>
+  </mat-select>
 </form>
 
 <div *ngIf="dataSource; else notSearched">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      
-    <ng-container matColumnDef="text">
-      <th mat-header-cell *matHeaderCellDef>Text</th>
-      <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 fullWidth">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
   
+    <ng-container matColumnDef="age">
+      <th mat-header-cell *matHeaderCellDef>Age</th>
+      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="telephone">
+      <th mat-header-cell *matHeaderCellDef>Telephone</th>
+      <td mat-cell *matCellDef="let element"> {{element.telephone}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="company">
+      <th mat-header-cell *matHeaderCellDef>Company</th>
+      <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="postcode">
+      <th mat-header-cell *matHeaderCellDef>Postcode</th>
+      <td mat-cell *matCellDef="let element"> {{element.postcode}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef>Address</th>
+      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+</div>
+
+<div>
+
 </div>
 
 <ng-template #notSearched>

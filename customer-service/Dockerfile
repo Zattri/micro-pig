@@ -1,4 +1,4 @@
-FROM node:8
+FROM node
 
 # Working directory of the source code
 WORKDIR /src

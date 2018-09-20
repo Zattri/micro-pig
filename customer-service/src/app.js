@@ -27,9 +27,8 @@ app.get('/', (req, res) => {
 app.get('/fetchall', (req, res) => {
     console.log("Fetch all request hit")
     database.collection("accounts").find({}).toArray(function(err, result) {
-        console.log(result)
+        res.status(200).send(result)
     })
-    res.status(200).send("Customer get response")
 })
 
 app.post('/', (req, res) => {
