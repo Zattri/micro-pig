@@ -20,8 +20,10 @@ export class SearchPageComponent implements OnInit {
     {value: 'customer', viewValue: 'Customer'}
   ];
 
-  displayedColumns: string[] = ['name', 'age', 'email', 'telephone', 'company', 'postcode', 'address'];
+  customerColumns: string[] = ['name', 'age', 'email', 'telephone', 'company', 'postcode', 'address'];
+  productColumns: string[] = ['name', 'product_id', 'stock', 'price'];
   dataSource = null;
+  sourceType = null;
 
   getUrl = 'http://localhost:3000';
   postUrl = 'http://localhost:3000/search';
@@ -49,6 +51,7 @@ export class SearchPageComponent implements OnInit {
   getForm() {
     this.searchService.get(this.getUrl)
     .subscribe(res => {
+      console.log('Got back from thing');
       this.dataSource = res;
       console.log(res);
     });
@@ -57,6 +60,9 @@ export class SearchPageComponent implements OnInit {
   getDatabase() {
     const microservice = this.searchForm.controls.databaseSelect.value;
     this.searchService.get(`${this.getUrl}/${microservice}/fetchall`)
-    .subscribe(res => this.dataSource = res);
+    .subscribe(res => {
+      this.dataSource = res;
+      this.sourceType = microservice;
+    });
   }
 }
