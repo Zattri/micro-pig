@@ -22,3 +22,5 @@ This container contains -
 It is recommended to serve the angular site through angular cli with `ng serve` in the `angular-app` folder.
 
 This contains the front-end API for interacting with the user and microservices
+
+I regret naming this project micro-pig
