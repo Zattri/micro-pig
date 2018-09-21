@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup } from '../../../node_modules/@angular/forms';
 import { EventEmitter } from 'events';
 import { SearchService } from '../services/search.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-page',
@@ -14,8 +15,15 @@ export class SearchPageComponent implements OnInit {
 
   searchForm: FormGroup;
 
-  displayedColumns: string[] = ['text'];
+  databases = [
+    {value: 'product', viewValue: 'Product'},
+    {value: 'customer', viewValue: 'Customer'}
+  ];
+
+  customerColumns: string[] = ['name', 'email', 'telephone', 'address', 'orders'];
+  productColumns: string[] = ['name', 'product_id', 'stock', 'price'];
   dataSource = null;
+  sourceType = null;
 
   getUrl = 'http://localhost:3000';
   postUrl = 'http://localhost:3000/search';
@@ -27,7 +35,8 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit() {
     this.searchForm = this.fb.group({
-      searchText: new FormControl('')
+      searchText: new FormControl(''),
+      databaseSelect: new FormControl('Database')
     });
   }
 
@@ -43,7 +52,27 @@ export class SearchPageComponent implements OnInit {
     this.searchService.get(this.getUrl)
     .subscribe(res => {
       this.dataSource = res;
-      console.log(res);
     });
+  }
+
+  getDatabase() {
+    const microservice = this.searchForm.controls.databaseSelect.value;
+    this.searchService.get(`${this.getUrl}/${microservice}/fetchall`)
+    .subscribe(res => {
+      this.dataSource = res;
+      this.sourceType = microservice;
+    });
+  }
+
+  stringifyOrders(ordersArr) {
+    let orderString = '';
+    if (ordersArr[0].hasOwnProperty('item')) {
+      ordersArr.forEach(object => {
+        orderString += `${object.item} : ${object.quantity}, `;
+      });
+    } else {
+      orderString = 'None';
+    }
+    return orderString;
   }
 }

@@ -1,4 +1,4 @@
-FROM node:8
+FROM node
 
 # Working directory of the source code
 WORKDIR /src
@@ -13,6 +13,8 @@ RUN npm install
 COPY . .
 
 EXPOSE 80
+
+VOLUME /data
 
 # Commands to run on container start
 CMD ["npm", "start"]

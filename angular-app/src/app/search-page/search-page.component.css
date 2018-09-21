@@ -1,8 +1,18 @@
 .searchForm {
-    width: 450px;
+    width: 20%;
     padding-left: 38%;
 }
   
 .fullWidth {
     width: 100%;
+}
+
+table th {
+    text-align: center;
+    padding: 0 10px;
+}
+
+table td {
+    text-align: center;
+    padding: 0 10px;
 }
