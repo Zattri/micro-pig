@@ -36,6 +36,8 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+customer_data
+*.bat
 
 # System Files
 .DS_Store

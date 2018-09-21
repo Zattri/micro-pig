@@ -11,15 +11,10 @@
 </form>
 
 <div *ngIf="dataSource && sourceType == 'customer'">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 fullWidth">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="age">
-      <th mat-header-cell *matHeaderCellDef>Age</th>
-      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
     </ng-container>
 
     <ng-container matColumnDef="email">
@@ -32,19 +27,14 @@
       <td mat-cell *matCellDef="let element"> {{element.telephone}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="company">
-      <th mat-header-cell *matHeaderCellDef>Company</th>
-      <td mat-cell *matCellDef="let element"> {{element.company}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="postcode">
-      <th mat-header-cell *matHeaderCellDef>Postcode</th>
-      <td mat-cell *matCellDef="let element"> {{element.postcode}} </td>
-    </ng-container>
-
     <ng-container matColumnDef="address">
       <th mat-header-cell *matHeaderCellDef>Address</th>
       <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="orders">
+      <th mat-header-cell *matHeaderCellDef>Orders</th>
+      <td mat-cell *matCellDef="let element"> {{stringifyOrders(element.orders)}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="customerColumns"></tr>
@@ -53,7 +43,7 @@
 </div>
 
 <div *ngIf="dataSource && sourceType == 'product'">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 fullWidth">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
@@ -78,12 +68,3 @@
     <tr mat-row *matRowDef="let row; columns: productColumns;"></tr>
   </table>
 </div>
-
-<div>
-
-</div>
-
-<ng-template #notSearched>
-  <br>
-  Hey, you need to search first!
-</ng-template>

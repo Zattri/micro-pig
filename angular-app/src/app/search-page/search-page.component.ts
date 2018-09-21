@@ -20,7 +20,7 @@ export class SearchPageComponent implements OnInit {
     {value: 'customer', viewValue: 'Customer'}
   ];
 
-  customerColumns: string[] = ['name', 'age', 'email', 'telephone', 'company', 'postcode', 'address'];
+  customerColumns: string[] = ['name', 'email', 'telephone', 'address', 'orders'];
   productColumns: string[] = ['name', 'product_id', 'stock', 'price'];
   dataSource = null;
   sourceType = null;
@@ -51,9 +51,7 @@ export class SearchPageComponent implements OnInit {
   getForm() {
     this.searchService.get(this.getUrl)
     .subscribe(res => {
-      console.log('Got back from thing');
       this.dataSource = res;
-      console.log(res);
     });
   }
 
@@ -64,5 +62,17 @@ export class SearchPageComponent implements OnInit {
       this.dataSource = res;
       this.sourceType = microservice;
     });
+  }
+
+  stringifyOrders(ordersArr) {
+    let orderString = '';
+    if (ordersArr[0].hasOwnProperty('item')) {
+      ordersArr.forEach(object => {
+        orderString += `${object.item} : ${object.quantity}, `;
+      });
+    } else {
+      orderString = 'None';
+    }
+    return orderString;
   }
 }
