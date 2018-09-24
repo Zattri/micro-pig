@@ -4,15 +4,29 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb') 
 
-const databaseUrl = 'mongodb://mongodb/customer'
-let database = null
+const baseMongoUrl = 'mongodb://mongodb/'
+const databasePaths = [ 'customer', 'product' ]
 
-MongoClient.connect(databaseUrl, function(err, db) {
+let customerDatabase = null
+let productDatabase = null
+
+databasePaths.forEach(function(path) {
+
+})
+MongoClient.connect(baseMongoUrl + databasePaths[0], function(err, db) {
     if (err) {
         console.log(err)
     }
     console.log("Connection to customer database established")
-    database = db.db("customer")
+    customerDatabase = db.db("customer")
+});
+
+MongoClient.connect(baseMongoUrl + databasePaths[1], function(err, db) {
+    if (err) {
+        console.log(err)
+    }
+    console.log("Connection to product database established")
+    productDatabase = db.db("product")
 });
 
 
@@ -21,7 +35,17 @@ app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
     console.log("GET request")
-    res.status(200).send("Customer get response")
+    customerDatabase.collection("accounts").find({}).toArray(function(err, result) {
+        console.log('CUSTOMER DATABASE')
+        console.log(result)
+    })
+
+    // Console log products
+    productDatabase.collection("stock").find({}).toArray(function(err, result) {
+        console.log('PRODUCT DATABASE')
+        console.log(result)
+    })
+    res.status(200).send("Order get response")
 })
 
 app.get('/fetchall', (req, res) => {
@@ -33,7 +57,7 @@ app.get('/fetchall', (req, res) => {
 
 app.post('/', (req, res) => {
     console.log("POST request")
-    res.status(200).send("Customer post response")
+    res.status(200).send("Order post response")
 })
 
-app.listen(80, () => console.log('Customer service listening on port 80'))
+app.listen(80, () => console.log('Order service listening on port 80'))

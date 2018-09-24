@@ -1,16 +1,36 @@
 <form class="searchForm" [formGroup]="searchForm">
-  <input mat-input placeholder="Search Text" type="search" formControlName="searchText">
-  <button type="submit" (click)="postForm()" mat-raised-button>Post Search</button>
-  <button type="submit" (click)="getForm()" mat-raised-button>Get All</button>
-  <button type="submit" (click)="getDatabase()" mat-raised-button>Get All Data</button>
-  <mat-select placeholder="Database" formControlName="databaseSelect">
-    <mat-option *ngFor="let database of databases" [value]="database.value">
-      {{database.viewValue}}
-    </mat-option>
-  </mat-select>
+  <div class="row">
+    <div class="col-50">
+      <input matInput placeholder="Search Text" type="search" formControlName="searchText">
+    </div>
+    <div class="col-50">
+      <button type="submit" (click)="postForm()" mat-raised-button>Post Search</button>
+      <button type="submit" (click)="getForm()" mat-raised-button>Get All</button>
+
+      <button type="submit" (click)="getService()" mat-raised-button>Test Order Service</button>
+      <button type="submit" (click)="getDatabase()" mat-raised-button>Get All Data</button>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-50">
+      <mat-select placeholder="Database" formControlName="databaseSelect">
+        <mat-option *ngFor="let database of databases" [value]="database.value">
+          {{database.viewValue}}
+        </mat-option>
+      </mat-select>
+    </div>
+    <div class="col-50">
+      <mat-select placeholder="Service" formControlName="serviceSelect">
+        <mat-option *ngFor="let service of services" [value]="service.value">
+          {{service.viewValue}}
+        </mat-option>
+      </mat-select>
+    </div>
+  </div>
 </form>
 
-<div *ngIf="dataSource && sourceType == 'customer'">
+<div class="row" *ngIf="dataSource && sourceType == 'customer'">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -42,7 +62,7 @@
   </table>
 </div>
 
-<div *ngIf="dataSource && sourceType == 'product'">
+<div class="row" *ngIf="dataSource && sourceType == 'product'">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>

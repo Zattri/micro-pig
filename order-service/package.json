@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon src/app.js localhost 3000"
+    "start": "nodemon src/app.js localhost 80"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

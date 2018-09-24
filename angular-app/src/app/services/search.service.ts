@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class SearchService {
+export class RequestHandler {
 
   private baseUrl = '/api';
   // Change this to be the common URL among services

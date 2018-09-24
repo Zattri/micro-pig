@@ -1,6 +1,6 @@
 .searchForm {
-    width: 20%;
-    padding-left: 38%;
+    width: 40%;
+    margin: 0 auto;
 }
   
 .fullWidth {
@@ -15,4 +15,28 @@ table th {
 table td {
     text-align: center;
     padding: 0 10px;
+}
+
+.row {
+    width: 100%;
+    clear: both;
+}
+
+.col-50 {
+    float: left;
+    width: 50%;
+}
+
+form button {
+    width: 46%;
+    margin: 4px;
+}
+
+form input,
+form select {
+    width: 100%;
+}
+
+.mat-select {
+    margin: 10px 0;
 }
