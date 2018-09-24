@@ -1,0 +1,13 @@
+// Customer Data
+{"name":"Dennis Sherman","telephone":"076 8320 1533","email":"enim.Etiam.imperdiet@Aliquamfringillacursus.edu","address":"40772-193","orders": [{"item": "seafood", "quantity": 4}]}
+{"name":"Nelle Church","telephone":"(0119) 007 6937","email":"lectus.pede@Maecenas.com","address":"MM4 3EX","orders": [{"item": "salads", "quantity": 6}]}
+{"name":"Porter Benson","telephone":"0800 471 7555","email":"ac.orci.Ut@amet.net","address":"56345","orders": [{"item": "cereals", "quantity": 4}, {"item": "noodles", "quantity": 7}]}
+{"name":"Zachary Harrell","telephone":"070 9824 7209","email":"a@posuere.edu","address":"58360","orders": [{}]}
+{"name":"Heather Nolan","telephone":"0500 623832","email":"nascetur@dictumplacerat.ca","address":"716790","orders": [{}]}
+{"name":"Ruth Reeves","telephone":"0800 1111","email":"in@cursusetmagna.co.uk","address":"3290","orders": [{"item": "soups", "quantity": 2}, {"item": "sandwiches", "quantity": 2}]}
+{"name":"Dylan Robbins","telephone":"0500 968395","email":"Sed.malesuada.augue@eu.net","address":"79340","orders": [{}]}
+{"name":"Garrett West","telephone":"07624 054499","email":"non.arcu.Vivamus@velconvallisin.edu","address":"66520","orders": [{"item": "salads", "quantity": 5}, {"item": "pasta", "quantity": 3}, {"item": "sandwiches", "quantity": 1}]}
+{"name":"Barclay Wallace","telephone":"0500 561070","email":"tempus.mauris@nonvestibulumnec.edu","address":"226317","orders": [{"item": "pasta", "quantity": 8}, {"item": "cereals", "quantity": 5}]}
+{"name":"Donna Alford","telephone":"070 6594 4659","email":"ullamcorper.nisl.arcu@molestie.ca","address":"01833","orders": [{"item": "salad", "quantity": 9}, {"item": "seafood", "quantity": 13}, {"item": "cereals", "quantity": 4}]}
+
+// Product Data

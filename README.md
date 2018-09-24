@@ -23,4 +23,6 @@ It is recommended to serve the angular site through angular cli with `ng serve` 
 
 This contains the front-end API for interacting with the user and microservices
 
-I regret naming this project micro-pig
+I regret naming this project micro-pig (it's awful to type), but I'm stuck with it now...
+
+Let this be a lesson to future me.
