@@ -24,8 +24,6 @@ app.use('/', (req, res, next) => {
 
     let routes = proxyGates.filter(gate => req.originalUrl.indexOf(`/${gate.name}`) > -1)
 
-    console.log(routes)
-
     if (routes.length === 1) {
 
         let strippedPath = req.originalUrl.replace(`/${routes[0].name}`, '')
