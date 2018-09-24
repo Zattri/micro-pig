@@ -23,4 +23,25 @@ It is recommended to serve the angular site through angular cli with `ng serve` 
 
 This contains the front-end API for interacting with the user and microservices
 
-I regret naming this project micro-pig
+Robo 3T works well as an interface for managing and inserting sample data into the Mongo databases, as well as running basic queries against the data. You can find it here - https://robomongo.org/
+
+The database structure is as follows
+- (it is recommended you use this structure as the API is hard-coded to ask for data from this configuration)
+
+Database 1:
+customer
+|
+|   Collection:
+---> accounts
+
+Database 2:
+product
+|
+|   Collection:
+---> stock
+
+
+
+I regret naming this project micro-pig (it's awful to type), but I'm stuck with it now...
+
+Let this be a lesson to future me.
