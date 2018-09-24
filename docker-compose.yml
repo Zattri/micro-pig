@@ -25,6 +25,14 @@ services:
     links:
       [mongodb]
 
+  order:
+    container_name: order-service
+    build:
+      context: ./order-service/
+      dockerfile: Dockerfile
+    links:
+      [mongodb]
+
   mongodb:
     image: mongo:latest
     container_name: mongo-database

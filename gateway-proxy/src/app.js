@@ -15,12 +15,14 @@ function postCall(request) {
 
 const proxyGates = [
     {name: "customer", route: "http://customer"},
-    {name: "product", route: "http://product"}
+    {name: "product", route: "http://product"},
+    {name: "order", route: "http://order"}
 ]
 
 app.use('/', (req, res, next) => {
 
-    console.log(`GET request: ${req.originalUrl}`)
+    req.
+    console.log(`REQUEST: ${req.originalUrl}`)
 
     let routes = proxyGates.filter(gate => req.originalUrl.indexOf(`/${gate.name}`) > -1)
 
