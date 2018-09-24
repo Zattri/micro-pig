@@ -28,18 +28,24 @@ Robo 3T works well as an interface for managing and inserting sample data into t
 The database structure is as follows
 - It is recommended you use this structure as the API is hard-coded to ask for data from this configuration
 
-Database 1:
-customer
-|
-|   Collection:
----> accounts
+```
+Database:
+  customer
+  |
+  |-->
+      Collections:
+      |
+      |--> accounts
 
-Database 2:
-product
-|
-|   Collection:
----> stock
 
+Database:
+  product
+  |
+  |-->
+      Collections:
+      |
+      |--> stock
+```
 
 
 I regret naming this project micro-pig (it's awful to type), but I'm stuck with it now...
