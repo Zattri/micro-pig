@@ -14,15 +14,13 @@ In order to run this project you will have to have the following installed -
 
 ## Optional installs
 
-#### docker-compose (highly recommended) 
+### docker-compose (highly recommended) -
 
-Though this is not fully necessary it is highly recommended that you install docker-compose as this saves you time when building and re-building images, as well as running multiple images concurrently. 
-
-**The project is supposed to be built this way**
+Though this is not fully necessary **the project is designed to be built using docker-compose** and it is highly recommended that you install it. This saves you time and effort building and re-building images, as well as running multiple images concurrently.
 
 The installation guide can be found here - https://docs.docker.com/compose/install/
 
-#### Robo 3T - 
+### Robo 3T - 
 I used this as an interface for managing and inserting sample data into the Mongo databases and it works well.  It also has the ability to running basic queries against the data and allows basic CRUD functionality and probably some more advanced stuff I don't know about.
 
 You can find it here - https://robomongo.org/
