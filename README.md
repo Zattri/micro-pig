@@ -47,6 +47,11 @@ Database:
       |--> stock
 ```
 
+The generator used to make the sample data can be found here - https://www.generatedata.com/
+
+The people and products in the sample data are generated and are not real, please don't try using the names, numbers or email addresses listed in the sample data.
+
+
 
 I regret naming this project micro-pig (it's awful to type), but I'm stuck with it now...
 
