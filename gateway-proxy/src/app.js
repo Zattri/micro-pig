@@ -21,7 +21,12 @@ const proxyGates = [
 
 app.use('/', (req, res, next) => {
 
-    console.log(`REQUEST: ${req.originalUrl}`)
+    if (req.method === "GET") {
+        console.log(`GET: ${req.originalUrl}`)
+    }
+    else if (req.method === "POST") {
+        console.log(`POST: ${req.originalUrl}`)
+    }
 
     let routes = proxyGates.filter(gate => req.originalUrl.indexOf(`/${gate.name}`) > -1)
 

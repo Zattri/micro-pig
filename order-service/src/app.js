@@ -4,16 +4,13 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb') 
 
-const baseMongoUrl = 'mongodb://mongodb/'
-const databasePaths = [ 'customer', 'product' ]
+const customerDbUrl = 'mongodb://mongodb/customer'
+const productDbUrl = 'mongodb://mongodb/product'
 
 let customerDatabase = null
 let productDatabase = null
 
-databasePaths.forEach(function(path) {
-
-})
-MongoClient.connect(baseMongoUrl + databasePaths[0], function(err, db) {
+MongoClient.connect(customerDbUrl, function(err, db) {
     if (err) {
         console.log(err)
     }
@@ -21,7 +18,7 @@ MongoClient.connect(baseMongoUrl + databasePaths[0], function(err, db) {
     customerDatabase = db.db("customer")
 });
 
-MongoClient.connect(baseMongoUrl + databasePaths[1], function(err, db) {
+MongoClient.connect(productDbUrl, function(err, db) {
     if (err) {
         console.log(err)
     }
@@ -40,7 +37,6 @@ app.get('/', (req, res) => {
         console.log(result)
     })
 
-    // Console log products
     productDatabase.collection("stock").find({}).toArray(function(err, result) {
         console.log('PRODUCT DATABASE')
         console.log(result)
@@ -50,7 +46,7 @@ app.get('/', (req, res) => {
 
 app.get('/fetchall', (req, res) => {
     console.log("/fetchall request")
-    database.collection("accounts").find({}).toArray(function(err, result) {
+    customerDatabase.collection("accounts").find({}).toArray(function(err, result) {
         res.status(200).send(result)
     })
 })

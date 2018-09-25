@@ -67,7 +67,7 @@ Database:
       |--> stock
 ```
 
-You can use Robo 3T (mentioned in the other applications section) to manage the databases and insert the sample data.
+You can use Robo 3T (mentioned in the optional installations section) to manage the databases and insert the sample data.
 
 The generator used to make the sample data can be found here - https://www.generatedata.com/
 

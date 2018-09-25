@@ -13,7 +13,7 @@ RUN npm install
 COPY . .
 
 # Port to expose for container
-EXPOSE 3000
+EXPOSE 80
 
 # Commands to run on container start
-CMD ["npm", "start"]
+CMD npm start

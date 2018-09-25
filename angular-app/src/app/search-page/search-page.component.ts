@@ -61,7 +61,10 @@ export class SearchPageComponent implements OnInit {
 
   getService() {
     console.log('Hey I called you');
-    this.requestHandler.get(`http://localhost:3000/order`);
+    this.requestHandler.get(`${this.getUrl}/order`)
+    .subscribe(res => {
+      console.log(res);
+    });
   }
 
   getDatabase() {
